@@ -3,10 +3,11 @@ const path = require('path');
 const fs = require('fs');
 
 let basePath = 'F:/ip_data/test';
-let fileName = 'score70.txt';
-let filePath = path.join(basePath, fileName);
 
-let input = fs.createReadStream(filePath);
+let scoreFilePath = path.join(basePath, 'score100.txt');
+let resultFilePath = path.join(basePath, 'result.txt');
+
+let input = fs.createReadStream(scoreFilePath);
 const rl = readLine.createInterface({
     input: input
 });
@@ -39,5 +40,13 @@ rl.on('line', (line) => {
 
 rl.on('close', (line) => {
     console.log('read finish...');
-    console.log(`file ${fileName},zeroCount is: ${zeroCount},totalScore is: ${totalScore}`);
+    let result = `file ${scoreFilePath}, zeroCount is: ${zeroCount}, totalScore is: ${totalScore}`;
+    console.log(result);
+    fs.appendFile(resultFilePath, result, 'utf-8', function (err) {
+        if (err) {
+            console.log('write result file error!');
+        } else {
+            console.log('write result file finish!');
+        }
+    });
 });
