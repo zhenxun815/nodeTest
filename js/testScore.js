@@ -4,10 +4,10 @@ const fs = require('fs');
 
 let basePath = 'F:/ip_data/test';
 
-let scoreFilePath = path.join(basePath, 'score100.txt');
+let scoreFilePath = path.join(basePath, 'score40.txt');
 let resultFilePath = path.join(basePath, 'result.txt');
 
-let input = fs.createReadStream(scoreFilePath);
+let input = fs.createReadStream(scoreFilePath, 'utf-8');
 const rl = readLine.createInterface({
     input: input
 });
@@ -25,7 +25,7 @@ rl.on('line', (line) => {
         let score = result[3];
         console.log(`appId: ${appId},sore: ${score}`);
 
-        if (0 == score) {
+        if (0 == parseInt(score)) {
             //console.log(`catch zero score: ${appId}`);
             zeroCount++;
         }
@@ -33,14 +33,14 @@ rl.on('line', (line) => {
     } else if (line.match(regTotalScore)) {
         //console.log(`total score: ${line}`);
         let result = regTotalScore.exec(line);
-        totalScore = result[3];
+        totalScore = parseInt(result[3]);
         console.log(`total score:${totalScore}`);
     }
 });
 
 rl.on('close', (line) => {
     console.log('read finish...');
-    let result = `file ${scoreFilePath}, zeroCount is: ${zeroCount}, totalScore is: ${totalScore}`;
+    let result = `file ${scoreFilePath}, zeroCount is: ${zeroCount}, totalScore is: ${totalScore} \r\n`;
     console.log(result);
     fs.appendFile(resultFilePath, result, 'utf-8', function (err) {
         if (err) {
