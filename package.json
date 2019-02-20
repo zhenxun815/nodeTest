@@ -3,7 +3,8 @@
   "main": "./html/index.html",
   "version": "1.0.0",
   "chromium-args": "--mixed-context",
-  "dependencies": {
-
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^11.9.4"
   }
 }
