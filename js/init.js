@@ -1,41 +1,57 @@
-console.log('into init...');
+console.log("into init...");
 
-const gui = require('nw.gui');
+const gui = require("nw.gui");
 
-var win = gui.Window.get();
-// @ts-ignore
-var screen = gui.Screen.Init().screens[0];
-var screenWidth = screen.bounds.width;
-var screenHeight = screen.bounds.height;
-console.log(`screen width is: ${screenWidth}, height is: ${screenHeight}`);
-
+const win = gui.Window.get();
 win.showDevTools();
 win.setAlwaysOnTop(true);
 win.setShowInTaskbar(true);
-
-win.on('move', onMoving);
-console.log(`win width: ${win.width}, win height: ${win.height}`);
-win.resizeBy(60, 0);
 win.show();
+
 console.log(`win width: ${win.width}, win height: ${win.height}`);
-let currentX = 0;
-let currentY = 0;
-function onMoving(movingX, movingY) {
-    console.log(`onMoving x: ${movingX}, y: ${movingY}`);
-    if (screenWidth - movingX <= 50) {
-        win.x = screenWidth - 50;
-    }
 
-    if (movingX <= 0) {
-        win.x = 0;
-    }
+// @ts-ignore
+const screen = gui.Screen.Init().screens[0];
+const screenWidth = screen.bounds.width;
+const screenHeight = screen.bounds.height;
+console.log(`screen width is: ${screenWidth}, height is: ${screenHeight}`);
 
-    if (screenHeight - movingY <= 50) {
-        win.y = screenHeight - 50;
-    }
+let dragFlag = false;
 
-    if (movingY <= 0) {
-        win.y = 0;
+window.onload = function() {
+  initMouseEvent();
+};
+
+function initMouseEvent() {
+  let float = document.querySelector("#float");
+  window.addEventListener("mousemove", event => {
+    
+    if (dragFlag) {
+      console.log(`mousemove x:${event.screenX},y:${event.screenY}`);
+      win.x = event.screenX - 25;
+      win.y = event.screenY - 25;
+      // @ts-ignore
+      float.style.backgroundImage = "url(../asserts/float-ondrag.png)";
     }
-    document.getElementById('float').style.backgroundImage = 'url(../asserts/float-ondrag.png)'
+  });
+
+  
+  float.addEventListener("dblclick", event => {
+    console.log("dblclick ...");
+    alert("dbclick!");
+  });
+
+  
+  float.addEventListener("mousedown", event => {
+    console.log("mousedown...");
+    dragFlag = true;
+  });
+
+  
+  window.addEventListener("mouseup", event => {
+    console.log("mouseup...");
+    dragFlag = false;
+    // @ts-ignore
+    float.style.backgroundImage = "url(../asserts/float-default.png)";
+  });
 }

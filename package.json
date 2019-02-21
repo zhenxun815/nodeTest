@@ -22,9 +22,6 @@
     "@types/jquery": "^3.3.29"
   },
   "description": "node test",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhenxun815/nodeTest.git"

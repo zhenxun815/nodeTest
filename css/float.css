@@ -11,7 +11,7 @@ html,body {
 }
 
 #float {
-    -webkit-app-region: drag;
+    
     left: 0;
     top: 0;
     margin: 0;
@@ -26,3 +26,6 @@ html,body {
     color: white;
 }
 
+#folderSelector{
+    display: none;
+}
