@@ -1,6 +1,6 @@
 const readLine = require('readline');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs')
 
 let basePath = 'F:/ip_data/test';
 

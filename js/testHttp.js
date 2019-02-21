@@ -34,6 +34,7 @@ function writeHtml(dirPath, response) {
     fs.readdir(dirPath, 'utf-8', (err, files) => {
         response.writeHead(500, { 'Content-Type': 'text/html' });
         if (err) {
+    
             response.end('<h1>server error!</h1>');
         }
         else {
