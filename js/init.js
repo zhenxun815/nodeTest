@@ -19,7 +19,8 @@ const screenHeight = screen.bounds.height;
 console.log(`screen width is: ${screenWidth}, height is: ${screenHeight}`);
 
 let dragFlag = false;
-
+let mouseDownX = 0;
+let mouseDownY = 0;
 
 window.onload = function () {
 
@@ -39,7 +40,7 @@ window.onload = function () {
 function initClickEvent(element) {
 
     //禁用默认右键菜单,自定义右键点击事件
-    window.oncontextmenu  =  onRightClickEvent;
+    window.oncontextmenu = onRightClickEvent;
 
     //自定义左键点击事件
     element.addEventListener('click', event => {
@@ -47,7 +48,7 @@ function initClickEvent(element) {
         let mouseButton = event.button;
         if (0 == mouseButton) {
             onLeftClickEvent(element);
-        } 
+        }
     });
 
 }
@@ -68,6 +69,7 @@ function onLeftClickEvent(element) {
  * 鼠标右键点击事件
  * 
  * @param {Event} event 
+ * 
  */
 function onRightClickEvent(event) {
     event.preventDefault();
@@ -89,15 +91,17 @@ function initDragEvent(element) {
             console.log(`mousemove x:${event.screenX},y:${event.screenY}`);
             win.x = event.screenX - 25;
             win.y = event.screenY - 25;
-            // @ts-ignore
-            float.style.backgroundImage = "url('../asserts/float-ondrag.png')";
         }
     });
 
-    element.addEventListener('mousedown', event => {
-        // @ts-ignore
+    window.addEventListener('mousedown', event => {
+       
         let mouseButton = event.button;
+        mouseDownX = event.screenX;
+        mouseDownY = event.screenY;
         //console.log(`mousedown...button ${mouseButton}`);
+        // @ts-ignore
+        element.style.backgroundImage = "url('../asserts/float-ondrag.png')";
         if (0 == mouseButton) {
             dragFlag = true;
         }
@@ -106,11 +110,10 @@ function initDragEvent(element) {
 
     window.addEventListener("mouseup", event => {
         //console.log("mouseup...");
-        // @ts-ignore
+        event.preventDefault();
         let mouseButton = event.button;
         dragFlag = false;
         // @ts-ignore
-        float.style.backgroundImage = "url(../asserts/float-default.png)";
-
+        element.style.backgroundImage = "url(../asserts/float-default.png)";
     });
 }
