@@ -1,0 +1,21 @@
+{
+    "name": "app",
+    "version": "1.0.0",
+    "main": "views/float.html",
+    "window": {
+        "title": "tq桌面助手",
+        "width": 50,
+        "height": 50,
+        "icon": "assets/logo_title.png",
+        "resizable": false,
+        "toolbar": false,
+        "frame": false,
+        "transparent": true,
+        "show": false
+    },
+    "chromium-args": "--mixed-context",
+    "dependencies": {
+        "koa": "^2.7.0"
+    },
+    "description": "node test"
+}

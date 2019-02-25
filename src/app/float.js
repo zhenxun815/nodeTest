@@ -88,7 +88,7 @@ function initDragEvent(element) {
 
     window.addEventListener('mousemove', event => {
         if (dragFlag) {
-            console.log(`mousemove x:${event.screenX},y:${event.screenY}`);
+            //console.log(`mousemove x:${event.screenX},y:${event.screenY}`);
             win.x = event.screenX - 25;
             win.y = event.screenY - 25;
         }
@@ -101,7 +101,7 @@ function initDragEvent(element) {
         mouseDownY = event.screenY;
         //console.log(`mousedown...button ${mouseButton}`);
         // @ts-ignore
-        element.style.backgroundImage = "url('../asserts/float-ondrag.png')";
+        element.style.backgroundImage = "url('../assets/float-ondrag.png')";
         if (0 == mouseButton) {
             dragFlag = true;
         }
@@ -114,6 +114,6 @@ function initDragEvent(element) {
         let mouseButton = event.button;
         dragFlag = false;
         // @ts-ignore
-        element.style.backgroundImage = "url(../asserts/float-default.png)";
+        element.style.backgroundImage = "url('../assets/float-default.png')";
     });
 }

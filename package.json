@@ -1,25 +1,14 @@
 {
   "name": "app",
-  "version": "1.0.0",
-  "main": "html/float.html",
-  "window": {
-    "title": "tq桌面助手",
-    "width": 50,
-    "height": 50,
-    "icon": "asserts/logo_title.png",
-    "resizable": false,
-    "toolbar": false,
-    "frame": false,
-    "transparent": true,
-    "show": false
-  },
-  "chromium-args": "--mixed-context",
-  "dependencies": {
-    "koa": "^2.7.0"
-  },
   "devDependencies": {
     "@types/node": "^11.9.4",
-    "@types/jquery": "^3.3.29"
+    "@types/jquery": "^3.3.29",
+    "nw": "^0.36.2",
+    "nw-builder": "^3.5.7"
+  },
+  "scripts": {
+    "dev": "D:/nwjs/nwjs-sdk-v0.36.1-win-x64/nw.exe ./src",
+    "prod": "nwbuild --platforms win32,win64,osx64,linux32,linux64 --buildDir ./dist/ ."
   },
   "description": "node test",
   "repository": {
