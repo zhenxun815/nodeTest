@@ -1,11 +1,13 @@
 {
   "name": "app",
   "devDependencies": {
-    "@types/node": "^11.9.4",
     "@types/jquery": "^3.3.29",
+    "@types/node": "^11.9.4",
     "nw": "^0.36.2",
-    "nw-builder": "^3.5.7"
+    "nw-builder": "^3.5.7",
+    "nw-vue-devtools": "^1.2.0"
   },
+  "chromium-args": "--load-extension='./node_modules/nw-vue-devtools/extension'",
   "scripts": {
     "dev": "D:/nwjs/nwjs-sdk-v0.36.1-win-x64/nw.exe ./src",
     "prod": "nwbuild --platforms win32,win64,osx64,linux32,linux64 --buildDir ./dist/ ."
